@@ -18,8 +18,10 @@ public class MyProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
+        /*为什么第二次运行APP，就崩溃了*/
         database = getContext().openOrCreateDatabase("mycp.db3", Context.MODE_PRIVATE, null);
         database.execSQL("create table tab(_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL)");
+        database.close();
         return true;
     }
 
